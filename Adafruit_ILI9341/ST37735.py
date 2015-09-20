@@ -73,9 +73,9 @@ ST7735_WHITE    = 0xFFFF
 class ST37735(ILI9341):
 
     def __init__(self, dc, spi, rst=None, gpio=None, width=ST7735_TFTWIDTH,
-                 height=ST7735_TFTHEIGHT):
+                 height=ST7735_TFTHEIGHT, clock=8000000):
         super(ST37735, self).__init__(dc, spi, rst=rst, gpio=gpio, width=width,
-                                      height=height)
+                                      height=height, clock=clock)
 
     def set_window(self, x0=0, y0=0, x1=None, y1=None):
         """Set the pixel address window for proceeding drawing commands. x0 and
@@ -111,10 +111,11 @@ class ST37735(ILI9341):
             time.sleep(0.5)
 
     def _init(self):
+        # Part 1
         self.command(ST7735_SWRESET)
         time.sleep(0.15)
         self.command(ST7735_SLPOUT)
-        time.sleep(0.255)
+        time.sleep(0.5)
         self.command(ST7735_FRMCTR1)
         self.data(0x01)
         self.data(0x2C)
@@ -154,6 +155,65 @@ class ST37735(ILI9341):
         self.data(0xC8)
         self.command(ST7735_COLMOD)
         self.data(0x05)
+
+        # Part 2 (red)
+        self.command(ST7735_CASET)
+        self.data(0x00)
+        self.data(0x00)
+        self.data(0x00)
+        self.data(0x7F)
+        self.command(ST7735_RASET)
+        self.data(0x00)
+        self.data(0x00)
+        self.data(0x00)
+        self.data(0x9F)
+
+        # Part 3
+        self.command(ST7735_GMCTRP1)
+        self.data(0x02)
+        self.data(0x1C)
+        self.data(0x07)
+        self.data(0x12)
+        self.data(0x37)
+        self.data(0x32)
+        self.data(0x29)
+        self.data(0x2D)
+        self.data(0x29)
+        self.data(0x25)
+        self.data(0x2B)
+        self.data(0x39)
+        self.data(0x00)
+        self.data(0x01)
+        self.data(0x03)
+        self.data(0x10)
+        self.command(ST7735_GMCTRN1)
+        self.data(0x03)
+        self.data(0x1D)
+        self.data(0x07)
+        self.data(0x06)
+        self.data(0x2E)
+        self.data(0x2C)
+        self.data(0x29)
+        self.data(0x2D)
+        self.data(0x2E)
+        self.data(0x2E)
+        self.data(0x37)
+        self.data(0x3F)
+        self.data(0x00)
+        self.data(0x00)
+        self.data(0x02)
+        self.data(0x10)
+        self.command(ST7735_NORON)
+        time.sleep(0.01)
+        self.command(ST7735_DISPON)
+        time.sleep(0.1)
+
+        # Black tab
+        self.command(ST7735_MADCTL)
+        self.data(0xC0)
+
+
+
 
 
 
