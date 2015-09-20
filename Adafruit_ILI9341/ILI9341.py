@@ -116,7 +116,7 @@ class ILI9341(object):
 	"""Representation of an ILI9341 TFT LCD."""
 
 	def __init__(self, dc, spi, rst=None, gpio=None, width=ILI9341_TFTWIDTH,
-		height=ILI9341_TFTHEIGHT):
+		height=ILI9341_TFTHEIGHT, clock=64000000):
 		"""Create an instance of the display using SPI communication.  Must
 		provide the GPIO pin number for the D/C pin and the SPI driver.  Can
 		optionally provide the GPIO pin number for the reset pin as the rst
@@ -138,7 +138,7 @@ class ILI9341(object):
 		# Set SPI to mode 0, MSB first.
 		spi.set_mode(0)
 		spi.set_bit_order(SPI.MSBFIRST)
-		spi.set_clock_hz(64000000)
+		spi.set_clock_hz(clock)
 		# Create an image buffer.
 		self.buffer = Image.new('RGB', (width, height))
 
