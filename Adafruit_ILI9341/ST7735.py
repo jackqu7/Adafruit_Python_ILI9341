@@ -70,11 +70,11 @@ ST7735_YELLOW   = 0xFFE0
 ST7735_WHITE    = 0xFFFF
 
 
-class ST37735(ILI9341):
+class ST7735(ILI9341):
 
     def __init__(self, dc, spi, rst=None, gpio=None, width=ST7735_TFTWIDTH,
                  height=ST7735_TFTHEIGHT, clock=8000000):
-        super(ST37735, self).__init__(dc, spi, rst=rst, gpio=gpio, width=width,
+        super(ST7735, self).__init__(dc, spi, rst=rst, gpio=gpio, width=width,
                                       height=height, clock=clock)
 
     def set_window(self, x0=0, y0=0, x1=None, y1=None):

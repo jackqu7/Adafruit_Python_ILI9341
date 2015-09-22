@@ -1,9 +1,10 @@
-Adafruit Python ILI9341
-=======================
+Adafruit Python ILI9341 & ST7735
+=================================
 
-Python library to control an ILI9341 TFT LCD display.  Allows simple drawing on the display without installing a kernel module.
+Python library to control an ILI9341/ST7735 TFT LCD display.  Allows simple drawing on the display without installing a kernel module.
 
-Designed specifically to work with the Adafruit 2.8" LCD's ----> https://www.adafruit.com/products/1770 
+Designed specifically to work with the Adafruit 2.8" LCD's ----> https://www.adafruit.com/products/1770
+And the Adafruit 1.8" LCD's ----> http://www.adafruit.com/products/358
 
 For all platforms (Raspberry Pi and Beaglebone Black) make sure you have the following dependencies:
 

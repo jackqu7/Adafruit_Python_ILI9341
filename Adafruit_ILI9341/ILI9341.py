@@ -94,7 +94,7 @@ ILI9341_RED         = 0xF800
 ILI9341_GREEN       = 0x07E0
 ILI9341_CYAN        = 0x07FF
 ILI9341_MAGENTA     = 0xF81F
-ILI9341_YELLOW      = 0xFFE0  
+ILI9341_YELLOW      = 0xFFE0
 ILI9341_WHITE       = 0xFFFF
 
 
@@ -207,31 +207,31 @@ class ILI9341(object):
 		self.command(0xEA)
 		self.data(0x00)
 		self.data(0x00)
-		self.command(ILI9341_PWCTR1)	# Power control 
-		self.data(0x23)					# VRH[5:0] 
-		self.command(ILI9341_PWCTR2)	# Power control 
-		self.data(0x10)					# SAP[2:0];BT[3:0] 
-		self.command(ILI9341_VMCTR1)	# VCM control 
+		self.command(ILI9341_PWCTR1)	# Power control
+		self.data(0x23)					# VRH[5:0]
+		self.command(ILI9341_PWCTR2)	# Power control
+		self.data(0x10)					# SAP[2:0];BT[3:0]
+		self.command(ILI9341_VMCTR1)	# VCM control
 		self.data(0x3e)
 		self.data(0x28)
-		self.command(ILI9341_VMCTR2)	# VCM control2 
+		self.command(ILI9341_VMCTR2)	# VCM control2
 		self.data(0x86)					# --
-		self.command(ILI9341_MADCTL)	#  Memory Access Control 
+		self.command(ILI9341_MADCTL)	#  Memory Access Control
 		self.data(0x48)
 		self.command(ILI9341_PIXFMT)
 		self.data(0x55)
 		self.command(ILI9341_FRMCTR1)
 		self.data(0x00)
 		self.data(0x18)
-		self.command(ILI9341_DFUNCTR)	#  Display Function Control 
+		self.command(ILI9341_DFUNCTR)	#  Display Function Control
 		self.data(0x08)
 		self.data(0x82)
 		self.data(0x27)
-		self.command(0xF2)				#  3Gamma Function Disable 
+		self.command(0xF2)				#  3Gamma Function Disable
 		self.data(0x00)
-		self.command(ILI9341_GAMMASET)	# Gamma curve selected 
+		self.command(ILI9341_GAMMASET)	# Gamma curve selected
 		self.data(0x01)
-		self.command(ILI9341_GMCTRP1)	# Set Gamma 
+		self.command(ILI9341_GMCTRP1)	# Set Gamma
 		self.data(0x0F)
 		self.data(0x31)
 		self.data(0x2B)
@@ -247,7 +247,7 @@ class ILI9341(object):
 		self.data(0x0E)
 		self.data(0x09)
 		self.data(0x00)
-		self.command(ILI9341_GMCTRN1)	# Set Gamma 
+		self.command(ILI9341_GMCTRN1)	# Set Gamma
 		self.data(0x00)
 		self.data(0x0E)
 		self.data(0x14)
@@ -263,21 +263,21 @@ class ILI9341(object):
 		self.data(0x31)
 		self.data(0x36)
 		self.data(0x0F)
-		self.command(ILI9341_SLPOUT)	# Exit Sleep 
+		self.command(ILI9341_SLPOUT)	# Exit Sleep
 		time.sleep(0.120)
-		self.command(ILI9341_DISPON)	# Display on 
+		self.command(ILI9341_DISPON)	# Display on
 
 	def begin(self):
 		"""Initialize the display.  Should be called once before other calls that
 		interact with the display are called.
 		"""
 		self.reset()
-		self._init()	
-	
+		self._init()
+
 	def set_window(self, x0=0, y0=0, x1=None, y1=None):
 		"""Set the pixel address window for proceeding drawing commands. x0 and
-		x1 should define the minimum and maximum x pixel bounds.  y0 and y1 
-		should define the minimum and maximum y pixel bound.  If no parameters 
+		x1 should define the minimum and maximum x pixel bounds.  y0 and y1
+		should define the minimum and maximum y pixel bound.  If no parameters
 		are specified the default will be to update the entire display from 0,0
 		to 239,319.
 		"""
@@ -287,7 +287,7 @@ class ILI9341(object):
 			y1 = self.height-1
 		self.command(ILI9341_CASET)		# Column addr set
 		self.data(x0 >> 8)
-		self.data(x0)					# XSTART 
+		self.data(x0)					# XSTART
 		self.data(x1 >> 8)
 		self.data(x1)					# XEND
 		self.command(ILI9341_PASET)		# Row addr set
