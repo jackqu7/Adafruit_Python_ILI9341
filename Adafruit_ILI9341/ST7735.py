@@ -104,11 +104,11 @@ class ST7735(ILI9341):
         """Reset the display, if reset pin is connected."""
         if self._rst is not None:
             self._gpio.set_high(self._rst)
-            time.sleep(0.5)
+            time.sleep(0.1)
             self._gpio.set_low(self._rst)
             time.sleep(0.5)
             self._gpio.set_high(self._rst)
-            time.sleep(0.5)
+            time.sleep(0.1)
 
     def _init(self):
         # Part 1
@@ -211,13 +211,3 @@ class ST7735(ILI9341):
         # Black tab
         self.command(ST7735_MADCTL)
         self.data(0xC0)
-
-
-
-
-
-
-
-
-
-
