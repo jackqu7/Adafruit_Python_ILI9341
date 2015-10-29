@@ -21,6 +21,7 @@
 import numbers
 import time
 import numpy as np
+# from .img_to_data_c import image_to_data as image_to_data_c
 
 from PIL import Image
 from PIL import ImageDraw
@@ -312,7 +313,7 @@ class ILI9341(object):
 		# Unfortunate that this copy has to occur, but the SPI byte writing
 		# function needs to take an array of bytes and PIL doesn't natively
 		# store images in 16-bit 565 RGB format.
-		pixelbytes = list(image_to_data(image))
+		pixelbytes = image_to_data(image)
 		# Write data to hardware.
 		self.data(pixelbytes)
 
